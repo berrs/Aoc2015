@@ -54,7 +54,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\Day1aTests.cs" />
-    <Compile Include="Solutions\Day1a.cs" />
+    <Compile Include="Solutions\Day1.cs" />
     <Compile Include="Tests\Day1bTests.cs" />
     <Compile Include="Tests\TestBase.cs" />
   </ItemGroup>
