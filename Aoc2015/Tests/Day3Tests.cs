@@ -25,6 +25,27 @@ namespace Aoc2015.Tests.Day3Tests
         }
     }
 
+    public class Day3bTests : TestBase
+    {
+        public Day3bTests(ITestOutputHelper output) : base(output) { }
+
+        [Theory]
+        [InlineData("^v",3)]
+        [InlineData("^>v<",3)]
+        [InlineData("^v^v^v^v^v",11)]
+        public void Spec(string input, int expected)
+        {
+            Day3.B.Calculate(input).ShouldEqual(expected);
+        }
+
+        [Fact]
+        public void Run()
+        {
+            int v = Day3.B.Calculate(Input.A);
+            WriteLine(v);
+        }
+    }
+
     static class Input
     {
         public const string A =

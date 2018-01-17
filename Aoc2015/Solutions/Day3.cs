@@ -19,6 +19,9 @@ namespace Aoc2015
                 return new Point(p.X + XDiff(c), p.Y + YDiff(c));
             }
 
+            public static bool operator ==(Point a, Point b) => a.X == b.X && a.Y == b.Y;
+            public static bool operator !=(Point a, Point b) => !(a == b);
+
             public override string ToString()
             {
                 return $"{X}.{Y}";
@@ -47,6 +50,51 @@ namespace Aoc2015
                     }
                 }
                 return counters.Count;
+            }
+        }
+
+        public static class B
+        {
+            public static int Calculate(string input)
+            {
+                var counters = new Dictionary<string, int>();
+                var santa = new Point(0, 0);
+                var robodog = new Point(0, 0);
+                Increment(counters, santa);
+                Increment(counters, robodog);
+
+                var e = input.GetEnumerator();
+                bool keepgoing = true;
+                while (keepgoing)
+                {
+                    if (e.MoveNext())
+                    {
+                        var next = santa + e.Current;
+                        if (next != santa)
+                        {
+                            santa = next;
+                            Increment(counters, santa);
+                        }
+                    }
+
+                    if (keepgoing = e.MoveNext())
+                    {
+                        var next = robodog + e.Current;
+                        if (next != robodog)
+                        {
+                            robodog = next;
+                            Increment(counters, robodog);
+                        }
+                    }
+                }
+
+                return counters.Count;
+            }
+
+            static void Increment(Dictionary<string, int> counters, Point p)
+            {
+                var pos = p.ToString();
+                counters[pos] = (counters.TryGetValue(pos, out int previous) ? previous : 0) + 1;
             }
         }
     }
