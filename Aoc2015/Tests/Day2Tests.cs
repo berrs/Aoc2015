@@ -2,7 +2,7 @@
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Aoc2015.Tests.Day2
+namespace Aoc2015.Tests.Day2Tests
 {
     public class Day2aTests : TestBase
     {
@@ -13,13 +13,33 @@ namespace Aoc2015.Tests.Day2
         [InlineData("1x1x10",43)]
         public void Spec(string dimensions, int expected)
         {
-            Day2a.Calculate(dimensions).ShouldEqual(expected);
+            Day2.A.Calculate(dimensions).ShouldEqual(expected);
         }
 
         [Fact]
         public void Test()
         {
-            int sum = TestData.InputA.Split('\n').Sum(Day2a.Calculate);
+            int sum = TestData.InputA.Split('\n').Sum(Day2.A.Calculate);
+            WriteLine(sum);
+        }
+    }
+
+    public class Day2bTests : TestBase
+    {
+        public Day2bTests(ITestOutputHelper output) : base(output) { }
+
+        [Theory]
+        [InlineData("2x3x4", 34)]
+        [InlineData("1x1x10", 14)]
+        public void Spec(string input, int expected)
+        {
+            Day2.B.Calculate(input).ShouldEqual(expected);
+        }
+
+        [Fact]
+        public void Run()
+        {
+            int sum = TestData.InputA.Split('\n').Sum(Day2.B.Calculate);
             WriteLine(sum);
         }
     }
