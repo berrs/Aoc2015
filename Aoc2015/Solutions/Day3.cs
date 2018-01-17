@@ -55,40 +55,33 @@ namespace Aoc2015
 
         public static class B
         {
+            static IEnumerable<char> SelectInput(string input, bool select)
+            {
+                foreach (char c in input)
+                {
+                    if (select)
+                        yield return c;
+                    select = !select;
+                }
+            }
+
             public static int Calculate(string input)
             {
                 var counters = new Dictionary<string, int>();
-                var santa = new Point(0, 0);
-                var robodog = new Point(0, 0);
-                Increment(counters, santa);
-                Increment(counters, robodog);
-
-                var e = input.GetEnumerator();
-                bool keepgoing = true;
-                while (keepgoing)
-                {
-                    if (e.MoveNext())
-                    {
-                        var next = santa + e.Current;
-                        if (next != santa)
-                        {
-                            santa = next;
-                            Increment(counters, santa);
-                        }
-                    }
-
-                    if (keepgoing = e.MoveNext())
-                    {
-                        var next = robodog + e.Current;
-                        if (next != robodog)
-                        {
-                            robodog = next;
-                            Increment(counters, robodog);
-                        }
-                    }
-                }
-
+                Run(counters, input, true);
+                Run(counters, input, false);
                 return counters.Count;
+            }
+
+            static void Run(Dictionary<string, int> counters, string input, bool select)
+            {
+                var p = new Point(0, 0);
+                Increment(counters, p);
+                foreach (char c in SelectInput(input, select))
+                {
+                    p = p + c;
+                    Increment(counters, p);
+                }
             }
 
             static void Increment(Dictionary<string, int> counters, Point p)
