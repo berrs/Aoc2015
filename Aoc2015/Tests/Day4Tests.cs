@@ -11,18 +11,11 @@ namespace Aoc2015.Tests.Day4Tests
         [Theory]
         [InlineData("abcdef", 609043)]
         [InlineData("pqrstuv", 1048970)]
+        [InlineData("bgvyzdsv", 254575)]
         public void Spec(string input, int expected)
         {
             var sw = Stopwatch.StartNew();
             Day4.A.Calculate(input).ShouldEqual(expected);
-            WriteLine(sw.Elapsed);
-        }
-
-        [Fact]
-        public void Run()
-        {
-            var sw = Stopwatch.StartNew();
-            WriteLine(Day4.A.Calculate("bgvyzdsv"));
             WriteLine(sw.Elapsed);
         }
     }
@@ -32,10 +25,10 @@ namespace Aoc2015.Tests.Day4Tests
         public Day4bTests(ITestOutputHelper output) : base(output) { }
 
         [Fact]
-        public void Run()
+        public void Test()
         {
             var sw = Stopwatch.StartNew();
-            WriteLine(Day4.B.Calculate("bgvyzdsv"));
+            Day4.B.Calculate("bgvyzdsv").ShouldEqual(1038736);
             WriteLine(sw.Elapsed);
         }
     }
