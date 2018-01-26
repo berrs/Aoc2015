@@ -9,32 +9,35 @@ namespace Aoc2015
         {
             public static bool Calculate(string input)
             {
-                int c1 = 0;
-                bool r1 = false, r2 = false, r3 = false;
+                int v = 3;
+                bool dd = false;
 
-                int n = input.Length - 1;
-                for (int i = 0; !r3 && i <= n; i++)
+                char p = '\0';
+                int n = input.Length;
+                for (int i = 0; i < n; i++)
                 {
                     char c = input[i];
 
-                    if (!r1 && "aeiou".IndexOf(c) >= 0)
+                    if (v > 0 && "aeiou".IndexOf(c) >= 0)
                     {
-                        c1 += 1;
-                        r1 = c1 >= 3;
+                        v--;
                     }
 
-                    if (i < n)
+                    dd = dd || c == p;
+
+                    bool bad = ((p == 'a' && c == 'b') ||
+                                (p == 'c' && c == 'd') ||
+                                (p == 'p' && c == 'q') ||
+                                (p == 'x' && c == 'y'));
+                    if (bad)
                     {
-                        char d = input[i + 1];
-                        r2 = r2 || d == c;
-                        r3 = ((c == 'a' && d == 'b') ||
-                              (c == 'c' && d == 'd') ||
-                              (c == 'p' && d == 'q') ||
-                              (c == 'x' && d == 'y'));
+                        return false;
                     }
+
+                    p = c;
                 }
 
-                return r1 && r2 && !r3;
+                return v == 0 && dd;
             }
         }
 
