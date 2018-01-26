@@ -23,8 +23,15 @@ namespace Aoc2015.Tests.Day5Tests
         [Fact]
         public void Result()
         {
-            var sw = Stopwatch.StartNew();
             Input.A.Tokenize().Count(Day5.A.Calculate).ShouldEqual(236);
+        }
+
+        [Fact]
+        public void Timing()
+        {
+            string[] inputs = Input.A.Tokenize().ToArray();
+            var sw = Stopwatch.StartNew();
+            Enumerable.Range(1, 1000).ForEach(_ => inputs.Count(Day5.A.Calculate)); // 3.3 seconds
             WriteLine(sw.Elapsed);
         }
     }
@@ -46,8 +53,15 @@ namespace Aoc2015.Tests.Day5Tests
         [Fact]
         public void Result()
         {
-            var sw = Stopwatch.StartNew();
             Input.A.Tokenize().Count(Day5.B.Calculate).ShouldEqual(51);
+        }
+
+        [Fact]
+        public void Timing()
+        {
+            string[] inputs = Input.A.Tokenize().ToArray();
+            var sw = Stopwatch.StartNew();
+            Enumerable.Range(1, 1000).ForEach(_ => inputs.Count(Day5.B.Calculate)); // 6.8 seconds
             WriteLine(sw.Elapsed);
         }
     }

@@ -13,5 +13,16 @@ namespace Aoc2015.Tests
                 .Select(s => s.Trim())
                 .Where(s => !String.IsNullOrEmpty(s));
         }
+
+        public static void ForEach<T>(this IEnumerable<T> source, Action<T> fn)
+        {
+            if (source != null && fn != null)
+            {
+                foreach (var x in source)
+                {
+                    fn(x);
+                }
+            }
+        }
     }
 }
