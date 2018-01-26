@@ -31,7 +31,7 @@ namespace Aoc2015.Tests.Day5Tests
         {
             string[] inputs = Input.A.Tokenize().ToArray();
             var sw = Stopwatch.StartNew();
-            Enumerable.Range(1, 1000).ForEach(_ => inputs.Count(Day5.A.Calculate)); // 3.3 seconds
+            Enumerable.Range(1, 1000).ForEach(_ => inputs.Count(Day5.A.Calculate)); // 2.9 seconds
             WriteLine(sw.Elapsed);
         }
     }

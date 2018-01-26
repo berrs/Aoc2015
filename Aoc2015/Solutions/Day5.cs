@@ -7,14 +7,15 @@ namespace Aoc2015
     {
         public static class A
         {
+            static readonly Regex Rule1 = new Regex(@"[aeiou].*[aeiou].*[aeiou]");
+            static readonly Regex Rule2 = new Regex(@"(.)\1");
+            static readonly Regex Rule3 = new Regex(@"(ab|cd|pq|xy)");
+            
             public static bool Calculate(string input)
             {
-                return input.Count(c => "aeiou".Contains(c)) >= 3 &&
-                       input.Any(c => input.Contains($"{c}{c}")) &&
-                       !input.Contains("ab") &&
-                       !input.Contains("cd") &&
-                       !input.Contains("pq") &&
-                       !input.Contains("xy");
+                return Rule1.IsMatch(input) &&
+                       Rule2.IsMatch(input) &&
+                       !Rule3.IsMatch(input);
             }
         }
 
