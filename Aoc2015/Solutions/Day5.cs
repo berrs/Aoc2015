@@ -20,8 +20,8 @@ namespace Aoc2015
 
         public static class B
         {
-            public static Regex Rule1 = new Regex(@"(..).*\1");
-            public static Regex Rule2 = new Regex(@"(.).\1");
+            public static Regex Rule1 = new Regex(@"(..).*\1", RegexOptions.Compiled);
+            public static Regex Rule2 = new Regex(@"(.).\1", RegexOptions.Compiled);
 
             public static bool Calculate(string input)
             {
