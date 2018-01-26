@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace Aoc2015
 {
@@ -18,7 +17,7 @@ namespace Aoc2015
                 {
                     char c = input[i];
 
-                    if (v > 0 && "aeiou".IndexOf(c) >= 0)
+                    if (v > 0 && (c == 'a' || c == 'e' || c == 'i' || c == 'u'))
                     {
                         v--;
                     }
