@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Aoc2015
 {
@@ -14,6 +15,17 @@ namespace Aoc2015
                        !input.Contains("cd") &&
                        !input.Contains("pq") &&
                        !input.Contains("xy");
+            }
+        }
+
+        public static class B
+        {
+            public static Regex Rule1 = new Regex(@"(..).*\1");
+            public static Regex Rule2 = new Regex(@"(.).\1");
+
+            public static bool Calculate(string input)
+            {
+                return Rule1.IsMatch(input) && Rule2.IsMatch(input);
             }
         }
     }

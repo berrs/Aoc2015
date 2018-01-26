@@ -21,10 +21,33 @@ namespace Aoc2015.Tests.Day5Tests
         }
 
         [Fact]
-        public void Test()
+        public void Result()
         {
             var sw = Stopwatch.StartNew();
             Input.A.Tokenize().Count(Day5.A.Calculate).ShouldEqual(236);
+            WriteLine(sw.Elapsed);
+        }
+    }
+
+    public class Day5bTests : TestBase
+    {
+        public Day5bTests(ITestOutputHelper output) : base(output) { }
+
+        [Theory]
+        [InlineData("qjhvhtzxzqqjkmpb", true)]
+        [InlineData("xxyxx", true)]
+        [InlineData("uurcxstgmygtbstg", false)]
+        [InlineData("ieodomkazucvgmuy", false)]
+        public void Spec(string input, bool expected)
+        {
+            Day5.B.Calculate(input).ShouldEqual(expected);
+        }
+
+        [Fact]
+        public void Result()
+        {
+            var sw = Stopwatch.StartNew();
+            Input.A.Tokenize().Count(Day5.B.Calculate).ShouldEqual(51);
             WriteLine(sw.Elapsed);
         }
     }
